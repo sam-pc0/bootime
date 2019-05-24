@@ -15,7 +15,7 @@ export default class ConfigurationCarnet extends Component {
   constructor(){
     super();
     this.state={
-      nombre: 'Sam',
+      name: 'Sam',
     }
   }
   
@@ -38,7 +38,7 @@ export default class ConfigurationCarnet extends Component {
       <ImageBackground 
       source={require('../img/background.jpg')} style={{ flex: 1 }}>
         <View style={styles.page}>
-          <HeaderMain textPrimary="Libros" textSecondary={"de: " + this.state.nombre} />
+          <HeaderMain textPrimary="Libros" textSecondary={"de: " + this.state.name} />
         </View>
       </ImageBackground>
      );

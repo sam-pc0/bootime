@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   StyleSheet, 
@@ -13,7 +14,7 @@ export default class HeaderMain extends Component {
     return ( 
       <View style={styles.container}>
         <HeadersText textPrimary={this.props.textPrimary} textSecondary={this.props.textSecondary} />
-        <TouchableOpacity style={styles.touchable} onPress={() => alert("en construcción")} >
+        <TouchableOpacity style={styles.touchable} onPress={() => Actions.UserInfo()} >
           <Icon style={styles.card} size={30} name='id-card'/>
         </TouchableOpacity>
       </View>
@@ -37,8 +38,6 @@ const styles = StyleSheet.create({
   card: {
     color: 'white',
     fontWeight: 'normal',
-    
   },
-
 
 });
