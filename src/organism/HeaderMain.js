@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import HeadersText from '../atoms/HeadersText';
+import HeadersText from '../molecules/HeadersText';
 export default class HeaderMain extends Component {
 
   render() { 

@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native';
 
-import HeaderMain from '../molecules/HeaderMain';
+import HeaderMain from '../organism/HeaderMain';
 
 export default class ConfigurationCarnet extends Component {
 

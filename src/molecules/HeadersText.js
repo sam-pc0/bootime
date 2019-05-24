@@ -5,6 +5,8 @@ import {
   View
 } from 'react-native';
 
+import ButtonLink from '../atoms/ButtonLink';
+
 export default class HeaderText extends Component {
 
   render() { 
@@ -12,6 +14,7 @@ export default class HeaderText extends Component {
         <View style={styles.containerText}>
           <Text style={styles.textPrimary}> {this.props.textPrimary} </Text>
           <Text style={styles.textSecondary}> {this.props.textSecondary} </Text>
+          <ButtonLink text="Cerrar Cesión" />
         </View>
      );
   }

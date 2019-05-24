@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import ReturnArrow from '../atoms/ReturnArrow';
-import HeadeText from '../atoms/HeadersText';
+import HeaderText from '../molecules/HeadersText';
 
 export default class Header extends Component {
 
@@ -13,7 +13,11 @@ export default class Header extends Component {
     return ( 
       <ImageBackground source={require("../img/backgroundHeader.jpg")}style={styles.container}>
         <ReturnArrow/>
-        <HeadeText textPrimary={this.props.textPrimary} textSecondary={this.props.textSecondary} />
+        <HeaderText 
+          textPrimary={this.props.textPrimary}
+          textSecondary={this.props.textSecondary} 
+
+          />
       </ImageBackground>
      );
   }
