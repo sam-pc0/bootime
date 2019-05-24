@@ -5,11 +5,14 @@ import {
   Text
 } from 'react-native';
 
+
 export default class ButtonFullWidth extends Component {
+
 
   render() { 
     return ( 
       <TouchableOpacity 
+      onPress={() => this.props.action()}
       style={styles.buttonFull}>
        <Text style={styles.buttonFullText}>{this.props.text}</Text>
       </TouchableOpacity>

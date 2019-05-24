@@ -2,15 +2,19 @@ import React, {Component} from 'react';
 import {
   StyleSheet, 
   Text, 
+  TouchableOpacity
 } from 'react-native';
 
 export default class ButtonLink extends Component {
 
   render() { 
     return ( 
-      <Text style={styles.buttonLink}>
+      <TouchableOpacity onPress={() => this.props.action()}>
+        <Text style={styles.buttonLink}>
         {this.props.text}
-      </Text>
+        </Text>
+      </TouchableOpacity>
+      
      );
   }
 }
