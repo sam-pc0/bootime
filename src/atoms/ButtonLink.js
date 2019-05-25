@@ -10,7 +10,7 @@ export default class ButtonLink extends Component {
   render() { 
     return ( 
       <TouchableOpacity onPress={() => this.props.action()}>
-        <Text style={styles.buttonLink}>
+        <Text style={[styles.buttonLink, this.props.style]}>
         {this.props.text}
         </Text>
       </TouchableOpacity>

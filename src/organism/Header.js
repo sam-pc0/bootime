@@ -14,10 +14,11 @@ export default class Header extends Component {
       <ImageBackground source={require("../img/backgroundHeader.jpg")}style={styles.container}>
         <ReturnArrow/>
         <HeaderText 
-          textPrimary={this.props.textPrimary}
-          textSecondary={this.props.textSecondary} 
-
-          />
+          textPrimary = {this.props.textPrimary}
+          textSecondary = {this.props.textSecondary} 
+          textButtonLink = {this.props.textButtonLink}
+          actionButtonLink = {this.props.actionButtonLink}
+        />
       </ImageBackground>
      );
   }

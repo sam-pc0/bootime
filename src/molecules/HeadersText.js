@@ -14,7 +14,13 @@ export default class HeaderText extends Component {
         <View style={styles.containerText}>
           <Text style={styles.textPrimary}> {this.props.textPrimary} </Text>
           <Text style={styles.textSecondary}> {this.props.textSecondary} </Text>
-          <ButtonLink text="Cerrar Cesión" />
+          {this.props.textButtonLink != null ?
+              <ButtonLink 
+                style = {styles.buttonLink}
+                text = { this.props.textButtonLink } 
+                action = {this.props.actionButtonLink } 
+              />
+            : null } 
         </View>
      );
   }
@@ -28,12 +34,16 @@ const styles = StyleSheet.create({
     fontFamily: 'RobotoSlab',
     color: 'aliceblue',
     fontSize: 48,
+    marginLeft: -10,
   },
   textSecondary: {
     fontFamily: 'RobotoSlab',
     color: 'aliceblue',
     fontSize: 35,
-    marginTop: -12,
-    marginLeft: 4,
+    marginTop: -18,
+    marginLeft: -10,
+  },
+  buttonLink:{
+    marginTop: -7,
   },
 });
