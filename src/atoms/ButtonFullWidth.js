@@ -13,7 +13,7 @@ export default class ButtonFullWidth extends Component {
     return ( 
       <TouchableOpacity 
       onPress={() => this.props.action()}
-      style={styles.buttonFull}>
+      style={[styles.buttonFull, this.props.style ]}>
        <Text style={styles.buttonFullText}>{this.props.text}</Text>
       </TouchableOpacity>
      );

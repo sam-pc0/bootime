@@ -6,7 +6,7 @@ export default class InputDefault extends Component {
 
   render() { 
     return ( 
-      <View style={styles.container}>
+      <View style={[styles.container, this.props.style]}>
         <Icon style={{padding: 10, color: 'rgba(255,255,255,0.6)'}} size={15} name={this.props.iconName}/>
         <TextInput
           style={{ flex: 1, color: 'aliceblue', fontFamily: "RobotoSlab"}}
