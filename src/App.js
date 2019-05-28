@@ -12,8 +12,8 @@ export default class Bootime extends Component {
     return (
     <Router>
       <Stack key="root" hideNavBar={true} >
-        <Scene key="BookAdd" component={BookAdd} />
         <Scene key="Login" component={Login} />
+        <Scene key="BookAdd" component={BookAdd} />
         <Scene key="ConfigurationCarnet" component={ConfigurationCarnet} />
         <Scene key="Main" component={Main} />
         <Scene key="UserInfo" component={UserInfo}/>

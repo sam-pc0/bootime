@@ -18,6 +18,11 @@ import InputDefault from '../atoms/InputDefault';
 
 export default class Login extends Component {
 
+
+  carnetExist(carnet){
+    return true;
+  }
+
   constructor(...props) {
     super(...props);
     this.state = {
@@ -47,7 +52,7 @@ export default class Login extends Component {
 
         <Image style={styles.logo} source={require('../img/logoTransWhite.png')} />
         <View style={styles.sectionInput}>
-          <InputDefault style={styles.input} iconName="id-card" placeholder="Carnet" />
+          <InputDefault style={styles.input} onChangeText={(carnet)=>{ this.setState({carnet})}} iconName="id-card" placeholder="Carnet" />
           <View style={styles.inputSectionText}>
             <Text style={styles.text}>No has configurado tu carnet?  </Text>
 
@@ -55,7 +60,15 @@ export default class Login extends Component {
           </View>
         </View>
         
-        <ButtonFullWidth text="Ingresar" action={() => Actions.Main()}/>
+        <ButtonFullWidth text="Ingresar" action={() => {
+          if( this.state.carnet != null){
+            if(this.carnetExist()){
+              alert(this.state.carnet)
+              Actions.Main()
+            }else{alert("No se encuentran cohincidencias");}
+          }else{ alert("Ingese un dato")}
+          
+        }}/>
         <ButtonLink text='Agreagar libro a la libreria' action={ () => Actions.BookAdd()}/> 
       </View>
 
