@@ -4,6 +4,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class InputDefault extends Component {
 
+  constructor(...props){
+    super(...props);
+  }
+
+
   render() { 
     return ( 
       <View style={[styles.container, this.props.style]}>
@@ -12,9 +17,11 @@ export default class InputDefault extends Component {
           style={{ flex: 1, color: 'aliceblue', fontFamily: "RobotoSlab"}}
           placeholder={this.props.placeholder}
           placeholderTextColor='rgba(255,255,255,0.6)'
+          value={this.props.value}
+          onChangeText={this.props.onChangeText}
         />
       </View>
-      
+  
      );
   }
 }
