@@ -57,16 +57,13 @@ export default class ButtonAdd extends Component {
         
         </View>
           <ButtonFullWidth style={styles.button} text="Confirmar" action={() => {
-             let book = JSON.stringify({
-              title: this.state.title,
-              author: this.state.author,
-              year: this.state.year,
-              gender: this.state.gender,
-              synopsis: this.state.synopsis,
-            });
-            alert(book)} 
-            
-            } />
+            if(validateInput){
+              let book = JSON.stringify(this.state);
+              alert(book) 
+            }else{
+              alert("Rellene todos los campos")
+            }
+          }}/>
       </View>
      );
   }
