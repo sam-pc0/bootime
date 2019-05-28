@@ -40,7 +40,7 @@ export default class Login extends Component {
 
       <View style={styles.page}>
       
-      <Dialog.Container visible={this.state.promptVisible}>
+      {/* <Dialog.Container visible={this.state.promptVisible}>
           <Dialog.Title>Ingrese el código de boleta</Dialog.Title>
           <Dialog.Input placeholder="---" underlineColorAndroid="gray"/>
           <Dialog.Button label="Cancelar" onPress={ () => this.setState({promptVisible: false})} />
@@ -48,7 +48,7 @@ export default class Login extends Component {
             this.setState({promptVisible: false});
             Actions.ConfigurationCarnet();
           }} />
-      </Dialog.Container>
+      </Dialog.Container> */}
 
         <Image style={styles.logo} source={require('../img/logoTransWhite.png')} />
         <View style={styles.sectionInput}>
@@ -56,14 +56,13 @@ export default class Login extends Component {
           <View style={styles.inputSectionText}>
             <Text style={styles.text}>No has configurado tu carnet?  </Text>
 
-            <ButtonLink text="Configurar"  action={() => this.setState({ promptVisible: true })} />
+            <ButtonLink text="Configurar"  action={() => Actions.ConfigurationCarnet()} />
           </View>
         </View>
         
         <ButtonFullWidth text="Ingresar" action={() => {
-          if( this.state.carnet != null){
+          if( this.state.carnet != ""){
             if(this.carnetExist()){
-              alert(this.state.carnet)
               Actions.Main()
             }else{alert("No se encuentran cohincidencias");}
           }else{ alert("Ingese un dato")}
