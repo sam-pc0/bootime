@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import HeaderMain from '../organism/HeaderMain';
+import BookLibrary from '../organism/BookLibrary';
 import {acGetUserDataByCarnet} from '../api-client';
 
 export default class ConfigurationCarnet extends Component {
@@ -28,7 +29,8 @@ export default class ConfigurationCarnet extends Component {
       age: user.age,
       gender: user.gender ,
       address: user.address,
-      email: user.email
+      email: user.email,
+      bookList: user.bookList,
     }
   }
   
@@ -52,6 +54,11 @@ export default class ConfigurationCarnet extends Component {
       source={require('../img/background.jpg')} style={{ flex: 1 }}>
         <View style={styles.page}>
           <HeaderMain user={this.state}  textPrimary="Libros" textSecondary={"de: " + this.state.name} />
+          <View style={styles.content}>
+            <BookLibrary bookList={this.state.bookList}>
+
+            </BookLibrary>
+          </View>
         </View>
       </ImageBackground>
      );
@@ -64,4 +71,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 165,
+  }
 });
