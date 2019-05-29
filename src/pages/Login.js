@@ -65,7 +65,7 @@ export default class Login extends Component {
             if(this.carnetExist()){
               Actions.Main()
             }else{alert("No se encuentran cohincidencias");}
-          }else{ alert("Ingese un dato")}
+          }else{ alert("Ingresa el numero de carnet")}
           
         }}/>
         <ButtonLink text='Agreagar libro a la libreria' action={ () => Actions.BookAdd()}/> 

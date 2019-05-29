@@ -12,10 +12,17 @@ import HeaderMain from '../organism/HeaderMain';
 
 export default class ConfigurationCarnet extends Component {
 
-  constructor(){
-    super();
+
+  constructor(props){
+    super(props);
+
+    this.getUserData(props.carnet);
+  }
+
+  getUserData(carnet){
+    //acUserData(carnet);
     this.state={
-      name: 'Sam',
+      name: 'negro',
     }
   }
   
