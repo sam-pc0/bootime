@@ -23,6 +23,7 @@ export default class ConfigurationCarnet extends Component {
   getUserData(carnet){
     let user = acGetUserDataByCarnet(carnet);
     this.state={
+      carnet: user.carnet,
       name:  user.name,
       age: user.age,
       gender: user.gender ,
@@ -50,7 +51,7 @@ export default class ConfigurationCarnet extends Component {
       <ImageBackground 
       source={require('../img/background.jpg')} style={{ flex: 1 }}>
         <View style={styles.page}>
-          <HeaderMain textPrimary="Libros" textSecondary={"de: " + this.state.name} />
+          <HeaderMain user={this.state}  textPrimary="Libros" textSecondary={"de: " + this.state.name} />
         </View>
       </ImageBackground>
      );

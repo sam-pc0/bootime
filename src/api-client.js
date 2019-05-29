@@ -9,7 +9,8 @@ export const acGetUserDataByCarnet = (carnet) => {
   // fetch("url")
   // .then((response) => response.text.json() )
   return {
-    name: 'sam',
+    carnet: "13",
+    name: 'samy',
     age: "20",
     gender: "m",
     address: 'jutiapa',

@@ -73,7 +73,7 @@ export default class Login extends Component {
           let carnet = this.state.carnet;
           if( carnet != ""){
             if(this.carnetExist(carnet)){
-              Actions.Main(carnet)
+              Actions.Main({carnet: carnet})
             }else{alert("No se ha encontrado el carnet");}
           }else{ alert("Ingresa el numero de carnet")}
           

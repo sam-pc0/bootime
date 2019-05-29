@@ -10,11 +10,13 @@ import {
 import HeadersText from '../molecules/HeadersText';
 export default class HeaderMain extends Component {
 
+
   render() { 
+  
     return ( 
       <View style={styles.container}>
         <HeadersText textPrimary={this.props.textPrimary} textSecondary={this.props.textSecondary} />
-        <TouchableOpacity style={styles.touchable} onPress={() => Actions.UserInfo()} >
+        <TouchableOpacity style={styles.touchable} onPress={() => Actions.UserInfo({user: this.props.user})}>
           <Icon style={styles.card} size={30} name='id-card'/>
         </TouchableOpacity>
       </View>

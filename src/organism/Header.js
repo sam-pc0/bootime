@@ -17,7 +17,7 @@ export default class Header extends Component {
           textPrimary = {this.props.textPrimary}
           textSecondary = {this.props.textSecondary} 
           textButtonLink = {this.props.textButtonLink}
-          actionButtonLink = {this.props.actionButtonLink}
+          actionButtonLink = {() => this.props.actionButtonLink()}
         />
       </ImageBackground>
      );
