@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import HeaderMain from '../organism/HeaderMain';
+import {acGetUserDataByCarnet} from '../api-client';
 
 export default class ConfigurationCarnet extends Component {
 
@@ -20,9 +21,13 @@ export default class ConfigurationCarnet extends Component {
   }
 
   getUserData(carnet){
-    //acUserData(carnet);
+    let user = acGetUserDataByCarnet(carnet);
     this.state={
-      name: 'negro',
+      name:  user.name,
+      age: user.age,
+      gender: user.gender ,
+      address: user.address,
+      email: user.email
     }
   }
   

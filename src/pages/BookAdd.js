@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
+import { Actions } from "react-native-router-flux";
 import {
   StyleSheet, 
-  Text, 
-  Image,
-  TextInput,
-  View
+  View,
+  ToastAndroid
 } from 'react-native';
 
 import Header from '../organism/Header';
 import InputDefault from '../atoms/InputDefault';
 import ButtonFullWidth from '../atoms/ButtonFullWidth';
+import { acPutBook } from "../api-client";
 
 export default class ButtonAdd extends Component {
 
@@ -17,7 +17,8 @@ export default class ButtonAdd extends Component {
   constructor(){
     super();
     this.state = {
-      title: " ",
+      id: "",
+      title: "",
       author: "",
       year: "",
       gender: "",
@@ -26,8 +27,18 @@ export default class ButtonAdd extends Component {
     
   }
 
-  proofHandler(author){
-    this.setState({author})
+  inputValidate(){
+    stt = this.state;
+    if( stt.title  !== "" && stt.author   !== "" && stt.year !== "" &&
+        stt.gender !== "" && stt.synopsis !== ""){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  idGenerate(){
+    return 123456;
   }
 
   render() { 
@@ -38,7 +49,7 @@ export default class ButtonAdd extends Component {
 
           <InputDefault 
             style={styles.input} iconName="book" placeholder="Título" 
-             onChangeText={(title)=> { this.setState({title})}} l=""/>
+             onChangeText={(title)=> { this.setState({title})}} />
 
           <InputDefault 
             style={styles.input} iconName="users"placeholder="Autor" 
@@ -57,9 +68,14 @@ export default class ButtonAdd extends Component {
         
         </View>
           <ButtonFullWidth style={styles.button} text="Confirmar" action={() => {
-            if(validateInput){
-              let book = JSON.stringify(this.state);
-              alert(book) 
+            if(this.inputValidate()){
+              this.setState({id: this.idGenerate()})
+              if ( acPutBook(this.state) === true){
+                ToastAndroid.show("Libro agregado exitosamente", ToastAndroid.SHORT);
+                Actions.pop();
+              }else{
+                alert("Hubo un error durante la transacción");
+              }
             }else{
               alert("Rellene todos los campos")
             }

@@ -6,7 +6,6 @@ import {
   StyleSheet, 
   ImageBackground, 
   Text, 
-  TextInput,
   Image,
   View
 } from 'react-native';
@@ -15,23 +14,31 @@ import {
 import ButtonFullWidth from '../atoms/ButtonFullWidth';
 import ButtonLink from '../atoms/ButtonLink';
 import InputDefault from '../atoms/InputDefault';
+import {acGetCarnetList} from '../api-client';
 
 export default class Login extends Component {
 
+  constructor() {
+    super();
 
-  carnetExist(carnet){
-    return true;
-  }
-
-  constructor(...props) {
-    super(...props);
     this.state = {
-      carnet: '',
+      carnet: "",
       promptVisible: false,
     };
   }
 
- 
+  carnetExist(carnet){
+    let carnetList = acGetCarnetList();
+    let result = false;
+    carnetList.forEach((_carnet)=>{
+      if(carnet == _carnet){
+        result = true;
+        return;
+      }
+    });
+    return result ;
+  }
+
   render() {
     return (
 
@@ -52,19 +59,22 @@ export default class Login extends Component {
 
         <Image style={styles.logo} source={require('../img/logoTransWhite.png')} />
         <View style={styles.sectionInput}>
-          <InputDefault style={styles.input} onChangeText={(carnet)=>{ this.setState({carnet})}} iconName="id-card" placeholder="Carnet" />
+
+          <InputDefault style={styles.input} placeholder="Carnet" iconName="id-card"
+          onChangeText={(carnet)=> { this.setState({carnet})}}  />
+
           <View style={styles.inputSectionText}>
             <Text style={styles.text}>No has configurado tu carnet?  </Text>
-
             <ButtonLink text="Configurar"  action={() => Actions.ConfigurationCarnet()} />
           </View>
         </View>
         
         <ButtonFullWidth text="Ingresar" action={() => {
-          if( this.state.carnet != ""){
-            if(this.carnetExist()){
-              Actions.Main()
-            }else{alert("No se encuentran cohincidencias");}
+          let carnet = this.state.carnet;
+          if( carnet != ""){
+            if(this.carnetExist(carnet)){
+              Actions.Main(carnet)
+            }else{alert("No se ha encontrado el carnet");}
           }else{ alert("Ingresa el numero de carnet")}
           
         }}/>

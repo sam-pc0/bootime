@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
+import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet, 
-  Text, 
-  Image,
+  ToastAndroid,
   View
 } from 'react-native';
 
 import Header from '../organism/Header';
 import InputDefault from '../atoms/InputDefault';
 import ButtonFullWidth from '../atoms/ButtonFullWidth';
+import { acPutUser } from "../api-client";
+
+
 
 export default class ConfigurationCarnet extends Component {
 
@@ -20,7 +23,7 @@ export default class ConfigurationCarnet extends Component {
       name: "",
       age: "",
       gender: "",
-      adress: '',
+      address: '',
       email: '',
     }
   }
@@ -30,7 +33,13 @@ export default class ConfigurationCarnet extends Component {
   }
 
   inputValidate(){
-    return true;
+    stt = this.state;
+    if( stt.name    !== "" && stt.age   !== "" && stt.gender !== "" &&
+        stt.address !== "" && stt.email !== ""){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   render() { 
@@ -52,7 +61,7 @@ export default class ConfigurationCarnet extends Component {
 
           <InputDefault
           style={styles.input} iconName="map"placeholder="Dirección"
-          onChangeText={(adress)=> { this.setState({adress})}}  />
+          onChangeText={(address)=> { this.setState({address})}}  />
 
           <InputDefault 
           style={styles.input} iconName="envelope"placeholder="Email"
@@ -61,11 +70,18 @@ export default class ConfigurationCarnet extends Component {
         </View>
           <ButtonFullWidth style={styles.button} text="Confirmar" action={() => {
             if(this.inputValidate()){
+
               this.setState({carnet: this.carnetGenerate()})
-              let user = JSON.stringify(this.state);
-              alert(user)
+
+              if ( acPutUser(this.state) === true){
+                ToastAndroid.show("Usuario configurado exitosamente", ToastAndroid.SHORT);
+                Actions.pop();
+              }else{
+                alert("Hubo un error durante la transacción");
+              }
+              
             }else{
-              alert("Rellena todos los campos")
+              alert("Debes rellenar todos los campos")
             }
             
           }}/>

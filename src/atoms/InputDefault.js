@@ -18,7 +18,7 @@ export default class InputDefault extends Component {
           placeholder={this.props.placeholder}
           placeholderTextColor='rgba(255,255,255,0.6)'
           value={this.props.value}
-          onChangeText={this.props.onChangeText}
+          onChangeText={(text) => this.props.onChangeText(text)}
         />
       </View>
   
