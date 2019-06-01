@@ -9,7 +9,7 @@ import {
 import Header from '../organism/Header';
 import InputDefault from '../atoms/InputDefault';
 import ButtonFullWidth from '../atoms/ButtonFullWidth';
-import { acPutBook } from "../api-client";
+import { acPostBook } from "../api-client";
 
 export default class ButtonAdd extends Component {
 
@@ -38,7 +38,7 @@ export default class ButtonAdd extends Component {
   }
 
   idGenerate(){
-    return 123456;
+    return `_${Math.random().toString(36).substr(2, 9)}`
   }
 
   render() { 
@@ -70,12 +70,16 @@ export default class ButtonAdd extends Component {
           <ButtonFullWidth style={styles.button} text="Confirmar" action={() => {
             if(this.inputValidate()){
               this.setState({id: this.idGenerate()})
-              if ( acPutBook(this.state) === true){
-                ToastAndroid.show("Libro agregado exitosamente", ToastAndroid.SHORT);
-                Actions.pop();
-              }else{
-                alert("Hubo un error durante la transacción");
-              }
+              acPostBook(this.state)
+              .then(value =>{
+                if(value){
+                  ToastAndroid.show("Libro agregado exitosamente, id:" +this.state.id, ToastAndroid.SHORT);
+                  Actions.pop();
+                }else{
+                  alert("Hubo un error durante la transacción");
+                }
+              })
+ 
             }else{
               alert("Rellene todos los campos")
             }

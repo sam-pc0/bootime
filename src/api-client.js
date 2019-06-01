@@ -1,5 +1,4 @@
 
-
 const host = "http://35.185.76.18"
 
 const connectionGet = (url) => {
@@ -20,7 +19,7 @@ const connectionPost = (url, data) => {
     .catch(error => false)
 };
 
-export const acGetCarnetList = () => connectionGet(host + "/carnetlist.php");
+
 
 export const acGetUserDataByCarnet = (carnet) => {
   // fetch("url")
@@ -145,16 +144,7 @@ export const acGetBookById = (id) => {
     synopsis: "un viejo loco que esta menos loco que la sociedad"
   }
 }
-
-export const acPostBook = (book) =>{
-  // fetch("url",{
-  //   method: 'POST',
-  //   body: book,
-  // })
-  // .then((response) => response);
-
-  return true;
-}
-
+export const acGetCarnetList = () => connectionGet(host + "/carnetlist.php");
+export const acPostBook = (data) => connectionPost(host+ "/libro.php", data)
 export const acPostUser = (data) => connectionPost(host + "/carnet.php",data);
 
