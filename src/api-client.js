@@ -1,9 +1,13 @@
-export const acGetCarnetList = () => {
-  // fetch("url")
-  // .then((response) => response.text.json() )
-  return ['13','0505171268','0505171267','0505171265','0505171262','0505171267','0505171262']
-  
+
+const host = "http://35.185.76.18"
+
+const conexionGetApi = (url) => {
+  return fetch(url)
+  .then(response => response.json())
+  .catch(err => alert(err))
 }
+
+export const acGetCarnetList = () => conexionGetApi(host + "/carnetlist.php");
 
 export const acGetUserDataByCarnet = (carnet) => {
   // fetch("url")
@@ -120,6 +124,7 @@ export const acGetBookById = (id) => {
   // fetch("url")
   // .then((response) => response.text.json() )
   return {
+    id: "_lkhkhluh",
     title: 'El Quijote',
     author: "Cervantes",
     year: "1250",
@@ -147,3 +152,4 @@ export const acPutUser = (user) =>{
 
   return true;
 }
+

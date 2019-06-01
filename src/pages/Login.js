@@ -28,16 +28,21 @@ export default class Login extends Component {
   }
 
   carnetExist(carnet){
-    let carnetList = acGetCarnetList();
-    let result = false;
-    carnetList.forEach((_carnet)=>{
-      if(carnet == _carnet){
-        result = true;
-        return;
+
+   return  acGetCarnetList()
+    .then(carnets =>{
+      for (let i = 0; i < carnets.length; i++) {
+        const _carnet = carnets[i].Carnet;
+        if(_carnet == carnet){
+          this.setState={carnet: _carnet};
+          return true;
+        }
       }
-    });
-    return result ;
+      return false    
+    }).catch(err => err)
+    
   }
+
 
   render() {
     return (
@@ -72,9 +77,12 @@ export default class Login extends Component {
         <ButtonFullWidth text="Ingresar" action={() => {
           let carnet = this.state.carnet;
           if( carnet != ""){
-            if(this.carnetExist(carnet)){
-              Actions.Main({carnet: carnet})
-            }else{alert("No se ha encontrado el carnet");}
+            this.carnetExist(carnet)
+            .then(value =>{
+              if(value){ Actions.Main({carnet: this.state.carnet})
+              }else{ alert("No se ha encontrado el carnet")}
+            })
+            .catch(err => alert("error viejo"))
           }else{ alert("Ingresa el numero de carnet")}
           
         }}/>
