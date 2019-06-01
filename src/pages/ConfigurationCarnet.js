@@ -9,7 +9,8 @@ import {
 import Header from '../organism/Header';
 import InputDefault from '../atoms/InputDefault';
 import ButtonFullWidth from '../atoms/ButtonFullWidth';
-import { acPutUser } from "../api-client";
+import { acPostUser } from "../api-client";
+
 
 
 
@@ -29,7 +30,7 @@ export default class ConfigurationCarnet extends Component {
   }
 
   carnetGenerate(){
-    return "09051712699"
+      return `0905${(Math.random() * 100).toString().substr(2, 8)}`
   }
 
   inputValidate(){
@@ -68,23 +69,30 @@ export default class ConfigurationCarnet extends Component {
           onChangeText={(email)=> { this.setState({email})}}  />
 
         </View>
-          <ButtonFullWidth style={styles.button} text="Confirmar" action={() => {
-            if(this.inputValidate()){
-
-              this.setState({carnet: this.carnetGenerate()})
-
-              if ( acPutUser(this.state) === true){
-                ToastAndroid.show("Usuario configurado exitosamente", ToastAndroid.SHORT);
-                Actions.pop();
-              }else{
-                alert("Hubo un error durante la transacción");
-              }
-              
-            }else{
-              alert("Debes rellenar todos los campos")
+          < ButtonFullWidth style = {
+            styles.button
+          }
+          text = "Confirmar"
+          action = {
+            () => {
+              if (this.inputValidate()) {
+                this.setState({
+                  carnet: this.carnetGenerate()
+                })
+                acPostUser(this.state)
+                  .then(value => {
+                    if (value) {
+                      ToastAndroid.show("Tu carnet es: " + this.state.carnet, ToastAndroid.LONG);
+                      Actions.pop();
+                    } else {
+                      alert("Error de servidor")
+                    }
+                  });
+              }else{alert("Debes rellenar todos los campos")}
             }
-            
-          }}/>
+          }
+          />
+                   
       </View>
      );
   }

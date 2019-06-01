@@ -1,13 +1,26 @@
 
+
 const host = "http://35.185.76.18"
 
-const conexionGetApi = (url) => {
+const connectionGet = (url) => {
   return fetch(url)
   .then(response => response.json())
   .catch(err => alert(err))
 }
+const connectionPost = (url, data) => {
 
-export const acGetCarnetList = () => conexionGetApi(host + "/carnetlist.php");
+  return fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => true)
+    .catch(error => false)
+};
+
+export const acGetCarnetList = () => connectionGet(host + "/carnetlist.php");
 
 export const acGetUserDataByCarnet = (carnet) => {
   // fetch("url")
@@ -133,7 +146,7 @@ export const acGetBookById = (id) => {
   }
 }
 
-export const acPutBook = (book) =>{
+export const acPostBook = (book) =>{
   // fetch("url",{
   //   method: 'POST',
   //   body: book,
@@ -143,13 +156,5 @@ export const acPutBook = (book) =>{
   return true;
 }
 
-export const acPutUser = (user) =>{
-  // fetch("url",{
-  //   method: 'POST',
-  //   body: user,
-  // })
-  // .then((response) => response);
-
-  return true;
-}
+export const acPostUser = (data) => connectionPost(host + "/carnet.php",data);
 
