@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   StyleSheet, 
   Text, 
-  Image,
+  ImageBackground,
   ScrollView,
   View,
 } from 'react-native';
@@ -37,24 +37,21 @@ export default class AllBooks extends Component {
   render() { 
 
     return ( 
-      <View style={styles.container}>
+      <ImageBackground 
+      source={require('../img/background.jpg')} style={{ flex: 1 }}>
         <RetunArrow></RetunArrow>
         <ScrollView style={styles.sv}>
           <View style={styles.innerContainer}>
             {this.getBookCards()}
           </View>
         </ScrollView>
-      </View>
+      </ImageBackground>
      );
   }
 }
  
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: "100%",
-    backgroundColor: 'rgba(142,99,82,0.8)',
-  },
+
   sv: {
     width: '100%',
     marginTop: 30,
