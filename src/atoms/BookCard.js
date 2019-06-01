@@ -18,16 +18,16 @@ export default class BookCard extends Component {
     return ( 
       <TouchableOpacity style={[styles.container, this.props.style]}>
         <View style={styles.information}>
-          <Text style={styles.title} >{this.state.title}</Text>
+          <Text style={styles.title} >{this.state.Titulo}</Text>
           <View style={styles.facts}>
-            <Text style={styles.fact} >por: {this.state.author}</Text>
-            <Text style={styles.fact} >, {this.state.year}</Text>
-            <Text style={styles.fact} >, {this.state.gender}</Text>
+            <Text style={styles.fact} >por: {this.state.Autor}</Text>
+            <Text style={styles.fact} >, {this.state.Anio}</Text>
+            <Text style={styles.fact} >, {this.state.Genero}</Text>
           </View>
           
         </View>
         <View style={styles.synopsis}>
-          <Text style={styles.synopsisText} >{this.state.synopsis}  </Text>
+          <Text style={styles.synopsisText} >{this.state.Sinopsis}  </Text>
         </View>
       </TouchableOpacity>
      );

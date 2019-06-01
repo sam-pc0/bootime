@@ -10,7 +10,7 @@ import {
 
 import HeaderMain from '../organism/HeaderMain';
 import BookLibrary from '../organism/BookLibrary';
-import {acGetUserDataByCarnet} from '../api-client';
+import {bookList} from '../api-client';
 
 export default class ConfigurationCarnet extends Component {
 
@@ -18,21 +18,18 @@ export default class ConfigurationCarnet extends Component {
   constructor(props){
     super(props);
 
-    this.getUserData(props.carnet);
+    this.state={
+      carnet: props.user.Carnet,
+      name: props.user.Nombre,
+      age: props.user.Edad,
+      gender: props.user.Sexo ,
+      address:props.user.Direccion,
+      email: props.user.Email,
+      bookList: bookList,
+    }
+
   }
 
-  getUserData(carnet){
-    let user = acGetUserDataByCarnet(carnet);
-    this.state={
-      carnet: user.carnet,
-      name:  user.name,
-      age: user.age,
-      gender: user.gender ,
-      address: user.address,
-      email: user.email,
-      bookList: user.bookList,
-    }
-  }
   
   //block the return key
   componentDidMount() {

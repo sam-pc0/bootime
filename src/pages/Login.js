@@ -14,7 +14,7 @@ import {
 import ButtonFullWidth from '../atoms/ButtonFullWidth';
 import ButtonLink from '../atoms/ButtonLink';
 import InputDefault from '../atoms/InputDefault';
-import {acGetCarnetList} from '../api-client';
+import {acGetCarnetList, acGetUserDataByCarnet} from '../api-client';
 
 export default class Login extends Component {
 
@@ -79,7 +79,13 @@ export default class Login extends Component {
           if( carnet != ""){
             this.carnetExist(carnet)
             .then(value =>{
-              if(value){ Actions.Main({carnet: this.state.carnet})
+              
+              if(value){
+                acGetUserDataByCarnet(this.state.carnet)
+                .then(user =>{
+                  Actions.Main({user: user})
+                }).catch(err => alert(err))
+                
               }else{ alert("No se ha encontrado el carnet")}
             })
             .catch(err => alert("error viejo"))

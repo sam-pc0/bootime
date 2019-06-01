@@ -24,6 +24,9 @@ export default class BookLibrary extends Component {
     let books = this.props.bookList;
     let returned = [];
     books.forEach(book => {
+      if( book.Titulo.length > 10){
+        book.Titulo =book.Titulo.substr(0,26)+"...";
+      }
       returned.push(
         <BookCard style={styles.bookCard} book={book}> </BookCard>
       );
