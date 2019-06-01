@@ -8,23 +8,23 @@ import {
 } from 'react-native';
 
 import BookCard from "../atoms/BookCard";
+import RetunArrow from "../atoms/ReturnArrow";
 
-
-export default class BookLibrary extends Component {
-  constructor(){
-    super();
+export default class AllBooks extends Component {
+  constructor(props){
+    super(props);
 
     this.state = {
-      bookList : [],
+      bookList : props.books,
     }
 
   }
 
   getBookCards(){
-    let books = this.props.bookList;
+    let books = this.state.bookList;
     let returned = [];
     books.forEach(book => {
-      if( book.Titulo.length > 10){
+      if( book.Titulo.length > 25){
         book.Titulo =book.Titulo.substr(0,21)+"...";
       }
       returned.push(
@@ -38,6 +38,7 @@ export default class BookLibrary extends Component {
 
     return ( 
       <View style={styles.container}>
+        <RetunArrow></RetunArrow>
         <ScrollView style={styles.sv}>
           <View style={styles.innerContainer}>
             {this.getBookCards()}
@@ -50,13 +51,13 @@ export default class BookLibrary extends Component {
  
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
-    height: 350,
-    elevation: 12,
+    width: '100%',
+    height: "100%",
+    backgroundColor: 'rgba(142,99,82,0.8)',
   },
   sv: {
     width: '100%',
-    backgroundColor: 'rgba(142,99,82,0.8)',
+    marginTop: 30,
   },
   innerContainer: {
     justifyContent: 'space-around',

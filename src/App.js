@@ -6,6 +6,7 @@ import BookAdd from './pages/BookAdd';
 import ConfigurationCarnet from './pages/ConfigurationCarnet';
 import Main from './pages/Main';
 import UserInfo from './pages/UserInfo';
+import AllBooks from "./pages/AllBooks";
 
 export default class Bootime extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class Bootime extends Component {
         <Scene key="ConfigurationCarnet" component={ConfigurationCarnet} />
         <Scene key="Main" component={Main} />
         <Scene key="UserInfo" component={UserInfo}/>
+        <Scene key="AllBooks" component={AllBooks}/>
       </Stack>
     </Router>
     );

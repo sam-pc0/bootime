@@ -37,7 +37,7 @@ export default class BookCard extends Component {
 const styles = StyleSheet.create({
   container: {
     width: '95%',
-    height: 90,
+    height: 100,
     flexDirection: 'row',
     backgroundColor: 'rgba(85,58,50,0.8)',
     elevation: 7,

@@ -11,7 +11,9 @@ import {
 import HeaderMain from '../organism/HeaderMain';
 import BookLibrary from '../organism/BookLibrary';
 import {bookList} from '../api-client';
-
+import ButtonFullWidth from '../atoms/ButtonFullWidth';
+import { Actions } from 'react-native-router-flux';
+import { acGetBookList } from "../api-client";
 export default class ConfigurationCarnet extends Component {
 
 
@@ -55,6 +57,13 @@ export default class ConfigurationCarnet extends Component {
             <BookLibrary bookList={this.state.bookList}>
 
             </BookLibrary>
+            <ButtonFullWidth action={() =>{
+              acGetBookList()
+              .then(books=> {
+                Actions.AllBooks({books: books})
+              })
+              
+              }} style={styles.botonLibros} text="Mostrat todos los libros"/>
           </View>
         </View>
       </ImageBackground>
@@ -73,5 +82,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginTop: 165,
+  },
+  botonLibros:{
+    marginTop: 40,
   }
 });

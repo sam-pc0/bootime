@@ -39,6 +39,7 @@ export const acGetBookById = (id) => {
 }
 export const acGetUserDataByCarnet = (carnet) => connectionGet(host +"/carnet.php?carnet="+carnet);
 export const acGetCarnetList = () => connectionGet(host + "/carnetlist.php");
+export const acGetBookList = () => connectionGet(host + "/libro.php")
 export const acPostBook = (data) => connectionPost(host+ "/libro.php", data)
 export const acPostUser = (data) => connectionPost(host + "/carnet.php",data);
 
